@@ -1,10 +1,5 @@
 //Review Tokenization -- This file takes an input of a file text review and tokenizes
 //the words in the review keeping track of how many times each word was used.
-//CSIS 112-B01 
-
-
-//<Sources if necessary>
-
 
 
 //Include statements 
@@ -20,10 +15,7 @@ void printInstructions();
 
 int main() 
 {
-	//Print statement for name and assignment number
-	cout << "Hayden Eubanks -- Programming Assignment 5" << endl << endl;
 
-	//Variable declarations 
 	
 	//variable to store the array of characters read in by getline
 	char charArray[1000];
@@ -34,9 +26,6 @@ int main()
 	//String to store the file name
 	string fileName;
 
-
-
-	//Program logic
 	
 	//Creates new review class object
 	 review myReview;
@@ -66,10 +55,7 @@ int main()
 			//a product review spread over multiple lines
 			cout << charArray << endl << endl;
 
-
-			//tokenize the character array
-	
-			//Delimiters to let strtok_s know where the end of a word is
+			//Delimiters to let strtok_r know where the end of a word is
 			char delimiters[] = " .,?!:;\n";
 
 			//Pointer variable to point to the word to be parsed out of the input. Initialized to NULL.
@@ -84,7 +70,7 @@ int main()
 			bool endOfWhileLoop = false;
 
 			//Pulls the first word out of the character array
-			wordToBeTakenOut = strtok_s(charArray, delimiters, &nextWordToBeTakenOut);
+			wordToBeTakenOut = strtok_r(charArray, delimiters, &nextWordToBeTakenOut);
 
 			//Calls review class function to add word to the vector reviewWords
 			myReview.addWord(wordToBeTakenOut);
@@ -93,7 +79,7 @@ int main()
 			while (endOfWhileLoop == false)
 			{
 				//Pulls out the next word in the character array
-				wordToBeTakenOut = strtok_s(NULL, delimiters, &nextWordToBeTakenOut);
+				wordToBeTakenOut = strtok_r(NULL, delimiters, &nextWordToBeTakenOut);
 
 				//If there are no more words in the array, set endOfWhile loop to true to end the loop
 				if (wordToBeTakenOut == NULL)
@@ -124,7 +110,9 @@ int main()
 	{
 		cout << "File could not be opened. Exiting program.\n\n";
 
-		system("pause");
+        std::cout << "Press Enter to continue..." << std::endl;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin.get();
 		return 1;
 	}
 	
@@ -138,7 +126,9 @@ int main()
 	myReview.printRankedWords();
 
 	//Closing program statements 
-	system("pause");
+    std::cout << "Press Enter to continue..." << std::endl;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin.get();
 	return 0;
 }
 

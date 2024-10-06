@@ -14,7 +14,7 @@ class review
 
 public:
 
-	//Takes the token pointer from strtok_s() as input, turns that word to lower case, 
+	//Takes the token pointer from strtok_r() as input, turns that word to lower case,
 	//and adds that word to the vector list. If the word already exists in the list, the frequency of that word
 	//is incremented by one instead of being added to the list.
 	void addWord(char* wordPointer);
